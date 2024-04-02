@@ -145,6 +145,7 @@ class HivemindStrategy(Strategy):
         bootstrap_timeout: Optional[float] = None,
         use_relay: bool = True,
         use_auto_relay: bool = False,
+        announce_maddrs: Optional[List] = None,
         **optimizer_kwargs: Any,
     ):
         if platform.system() != "Linux":
@@ -188,6 +189,7 @@ class HivemindStrategy(Strategy):
             bootstrap_timeout=bootstrap_timeout,
             use_relay=use_relay,
             use_auto_relay=use_auto_relay,
+            announce_maddrs=announce_maddrs
         )
 
         visible_addresses = [
