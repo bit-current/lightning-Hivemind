@@ -191,7 +191,8 @@ class HivemindStrategy(Strategy):
                 bootstrap_timeout=bootstrap_timeout,
                 use_relay=use_relay,
                 use_auto_relay=use_auto_relay,
-                announce_maddrs=announce_maddrs
+                announce_maddrs=announce_maddrs,
+                num_replicas=0
             )
         else:
             self.dht = dht
