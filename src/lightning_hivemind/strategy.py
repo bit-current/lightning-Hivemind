@@ -146,6 +146,7 @@ class HivemindStrategy(Strategy):
         use_relay: bool = True,
         use_auto_relay: bool = False,
         announce_maddrs: Optional[List] = None,
+        dht: Optional = None,
         **optimizer_kwargs: Any,
     ):
         if platform.system() != "Linux":
@@ -179,18 +180,21 @@ class HivemindStrategy(Strategy):
 
         self._parse_env_initial_peers()
 
-        self.dht = hivemind.DHT(
-            start=True,
-            initial_peers=initial_peers,
-            host_maddrs=host_maddrs if host_maddrs is not None else ["/ip4/0.0.0.0/tcp/0", "/ip4/0.0.0.0/udp/0/quic"],
-            use_ipfs=use_ipfs,
-            ensure_bootstrap_success=bool(not use_ipfs),
-            wait_timeout=wait_timeout,
-            bootstrap_timeout=bootstrap_timeout,
-            use_relay=use_relay,
-            use_auto_relay=use_auto_relay,
-            announce_maddrs=announce_maddrs
-        )
+        if dht is None:
+            self.dht = hivemind.DHT(
+                start=True,
+                initial_peers=initial_peers,
+                host_maddrs=host_maddrs if host_maddrs is not None else ["/ip4/0.0.0.0/tcp/0", "/ip4/0.0.0.0/udp/0/quic"],
+                use_ipfs=use_ipfs,
+                ensure_bootstrap_success=bool(not use_ipfs),
+                wait_timeout=wait_timeout,
+                bootstrap_timeout=bootstrap_timeout,
+                use_relay=use_relay,
+                use_auto_relay=use_auto_relay,
+                announce_maddrs=announce_maddrs
+            )
+        else:
+            self.dht = dht
 
         visible_addresses = [
             str(a) for a in self.dht.get_visible_maddrs() if not ipaddress.ip_address(a.values()[0]).is_loopback
