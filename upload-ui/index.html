@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoGPT - Data Upload for Fine-Tuning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <div class="logo">
+                <span class="logo-yo">Yo</span><span class="logo-gpt">GPT</span>
+            </div>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Models</a>
+            <a href="#">Dashboard</a>
+            <a href="#" class="active">Datasets</a>
+            <a href="#">Docs</a>
+        </nav>
+        <div class="user-info">
+            <div class="user-avatar">A</div>
+            <span class="user-name">Astro Intel</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Upload Training Data</h1>
+            <p class="subtitle">Upload your folders to fine-tune models on yogpt.ai</p>
+        </div>
+
+        <div class="upload-zone" id="upload-zone">
+            <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <p class="upload-text">Drag & drop your folder here</p>
+            <span class="upload-or">or</span>
+            <button class="upload-btn" id="upload-btn">
+                <i class="fas fa-folder-open"></i>
+                Select Folder
+            </button>
+            <input type="file" id="file-input" webkitdirectory directory multiple style="display: none;">
+        </div>
+
+        <div class="file-type-sections" id="file-type-sections"></div>
+
+        <div class="progress-container" id="progress-container" style="display: none;">
+            <div class="progress-header">
+                <span class="progress-label">Uploading...</span>
+                <span class="progress-percent" id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+
+        <button class="submit-btn" id="submit-btn" disabled>
+            <i class="fas fa-upload"></i>
+            Submit for Processing
+        </button>
+    </main>
+
+    <div id="error-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
